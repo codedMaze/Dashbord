@@ -14,9 +14,32 @@ const Sidebar = () => {
       {activeMenu && (
         <>
           <div className="flex justify-between items-center">
-            <Link to="/" onClick={() => {}} className="items-center">
-              <SiShopware />
+            <Link
+              to="/"
+              onClick={() => {}}
+              className="items-center flex gap-3 ml-3 tracking-tight font-extrabold mt-4 text-xl dark:text-white text-slate-900"
+            >
+              <SiShopware /> <spam>Shoppy</spam>
             </Link>
+            <TooltipComponent content="Menu" position="BottomCenter">
+              <button
+                type="button"
+                onClick={() => {}}
+                className="text-xl rounded-full p-3 mt-4 hover:bg-light-gray dark:text-white md:hidden"
+              >
+                <MdOutlineCancel />
+              </button>
+            </TooltipComponent>
+          </div>
+          <div className="mt-10">
+            {links.map((item) => (
+              <div
+                className="text-gray-400 mm-3 mt-4 uppercase"
+                key={item.title}
+              >
+                {item.title}
+              </div>
+            ))}
           </div>
         </>
       )}
