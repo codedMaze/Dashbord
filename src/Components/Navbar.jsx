@@ -28,7 +28,39 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
-  const { activeMenu, toggleActiveMenu } = useContext(StateContext);
+  const {
+    toggleActiveMenu,
+    navAction,
+    handleClick,
+    screenSize,
+    setScreenSize,
+    toggleScreenSize,
+  } = useContext(StateContext);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const cleanUp = setTimeout(() => {
+      if (screenSize <= 900) {
+        toggleScreenSize(false);
+      } else {
+        toggleScreenSize(true);
+      }
+      return () => {
+        clearTimeout(cleanUp);
+      };
+    }, 500);
+  }, [screenSize]);
 
   return (
     <div className="flex justify-between p-2 md:mx-6 relative">
@@ -48,7 +80,7 @@ const Navbar = () => {
         <NavButton
           title="chat"
           color="blue"
-          customFunc={() => handleClick("chat")}
+          customFunc={() => handleClick("chart")}
           icon={<BsChatLeft />}
           dotColor="#03c9d7"
         />
@@ -74,6 +106,10 @@ const Navbar = () => {
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
         </TooltipComponent>
+        {navAction.cart && <Cart />}
+        {navAction.chart && <Chart />}
+        {navAction.userProfile && <UserProfile />}
+        {navAction.notification && <Notification />}
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ const Sidebar = () => {
               <button
                 type="button"
                 onClick={() => {
-                  changeActiveMenu();
+                  toggleActiveMenu();
                 }}
                 className="text-xl rounded-full p-3 mt-4 hover:bg-light-gray dark:text-white md:hidden"
               >

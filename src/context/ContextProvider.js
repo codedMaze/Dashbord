@@ -3,10 +3,13 @@ import StateContext from "./context";
 
 const defaultNavState = {
   activeMenu: true,
-  chart: false,
-  cart: false,
-  userProfile: false,
-  notification: false,
+  screenSize: {},
+  navAction: {
+    chart: false,
+    cart: false,
+    userProfile: false,
+    notification: false,
+  },
 };
 
 const navigateReducer = (state, action) => {
@@ -17,6 +20,27 @@ const navigateReducer = (state, action) => {
       activeMenu: active,
     };
   }
+  if (action.type === "ACTIVE_DROPDOWN") {
+    return {
+      ...state,
+      navAction: { ...state.activeMenu, [action.value]: true },
+    };
+  }
+
+  if (action.type === "SET_SCREEN_SIZE") {
+    return {
+      ...state,
+      screenSize: action.size,
+    };
+  }
+
+  if (action.type === "SET_ACTIVE_SCREEN") {
+    return {
+      ...state,
+      activeMenu: action.size,
+    };
+  }
+
   return defaultNavState;
 };
 
@@ -31,14 +55,35 @@ const ContextProvider = ({ children }) => {
       type: "TOGGLE_ACTIVE_MENU",
     });
   };
+  const handleClick = (value) => {
+    dispatchNavAction({
+      type: "ACTIVE_DROPDOWN",
+      value,
+    });
+  };
+
+  const setScreenSize = (size) => {
+    dispatchNavAction({
+      type: "SET_SCREEN_SIZE",
+      size,
+    });
+  };
+
+  const toggleScreenSize = (size) => {
+    dispatchNavAction({
+      type: "SET_ACTIVE_SCREEN",
+      size,
+    });
+  };
 
   const stateContext = {
-    chart: navState.chart,
-    cart: navState.cart,
-    userProfile: navState.userProfile,
-    notification: navState.notification,
     activeMenu: navState.activeMenu,
+    navAction: navState.navAction,
+    screenSize: navState.screenSize,
     toggleActiveMenu,
+    handleClick,
+    setScreenSize,
+    toggleScreenSize,
   };
 
   return (
