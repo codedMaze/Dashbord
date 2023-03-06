@@ -8,8 +8,7 @@ import { links } from "../data/dummy";
 import StateContext from "../context/context";
 
 const Sidebar = () => {
-  const { activeMenu, changeActiveMenu, setActiveMenu } =
-    useContext(StateContext);
+  const { activeMenu, toggleActiveMenu } = useContext(StateContext);
 
   const activeLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2";
@@ -23,7 +22,7 @@ const Sidebar = () => {
             <Link
               to="/"
               onClick={() => {
-                setActiveMenu(false);
+                toggleActiveMenu();
               }}
               className="items-center flex gap-3 ml-3 tracking-tight font-extrabold mt-4 text-xl dark:text-white text-slate-900"
             >

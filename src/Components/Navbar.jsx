@@ -28,14 +28,14 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
-  const { activeMenu, changeActiveMenu } = useContext(StateContext);
+  const { activeMenu, toggleActiveMenu } = useContext(StateContext);
 
   return (
     <div className="flex justify-between p-2 md:mx-6 relative">
       <NavButton
         title="menu"
         color="blue"
-        customFunc={() => changeActiveMenu()}
+        customFunc={() => toggleActiveMenu()}
         icon={<AiOutlineMenu />}
       />
       <div className="flex">
