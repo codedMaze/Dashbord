@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 
@@ -11,6 +11,7 @@ import {
 import StateContext from "../context/context";
 
 const ECommerce = () => {
+  const { screenColor } = useContext(StateContext);
   return (
     <div className=" mt-12">
       <div className="flex flex-wrap lg:flex-nowrap justify-center">
@@ -24,7 +25,7 @@ const ECommerce = () => {
           <div className="mt-6">
             <Button
               color="white"
-              bgColor="blue"
+              bgColor={screenColor}
               text="Download"
               borderRadius="10px"
               size="md"
@@ -101,19 +102,19 @@ const ECommerce = () => {
               </div>
               <div className="mt-5">
                 <SparkLine
-                  currentColor="blue"
+                  currentColor={screenColor}
                   id="line-sparkline"
                   type="Line"
                   height="80px"
                   width="250px"
                   data={SparklineAreaData}
-                  color="blue"
+                  color={screenColor}
                 />
               </div>
               <div className="mt-10">
                 <Button
                   color="white"
-                  bgColor="blue"
+                  bgColor={screenColor}
                   text="Download Report"
                   borderRadius="10px"
                 />

@@ -4,10 +4,16 @@ const StateContext = createContext({
   chart: false,
   navAction: {},
   screenSize: "",
+  screenColor: "",
+  screenTheme: "",
+  themeSettings: "",
   toggleActiveMenu: () => {},
   handleClick: () => {},
   setScreenSize: () => {},
   toggleScreenSize: () => {},
+  setThemeSettings: () => {},
+  themeMode: () => {},
+  setColor: () => {},
 });
 
 export default StateContext;

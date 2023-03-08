@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import StateContext from "./context";
 
 const defaultNavState = {
@@ -45,6 +45,22 @@ const navigateReducer = (state, action) => {
 };
 
 const ContextProvider = ({ children }) => {
+  const [themeSettings, setThemeSettings] = useState(false);
+  const [screenColor, setScreenColor] = useState("#03C9D7");
+  const [screenTheme, setScreenTheme] = useState("Light");
+
+  const themeMode = (e) => {
+    setScreenTheme(e.target.value);
+    localStorage.setItem("theme", e.target.value);
+    setThemeSettings(false);
+  };
+
+  const setColor = (e) => {
+    setScreenColor(e);
+    localStorage.setItem("color", e);
+    setThemeSettings(false);
+  };
+
   const [navState, dispatchNavAction] = useReducer(
     navigateReducer,
     defaultNavState
@@ -80,10 +96,16 @@ const ContextProvider = ({ children }) => {
     activeMenu: navState.activeMenu,
     navAction: navState.navAction,
     screenSize: navState.screenSize,
+    screenColor,
+    screenTheme,
+    themeSettings,
     toggleActiveMenu,
     handleClick,
     setScreenSize,
     toggleScreenSize,
+    setThemeSettings,
+    themeMode,
+    setColor,
   };
 
   return (
