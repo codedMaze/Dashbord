@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import avatar from "../data/avatar.jpg";
-import { Cart, Chart, Notification, UserProfile } from ".";
+import { Cart, Chat, Notification, UserProfile } from ".";
 import StateContext from "../context/context";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -81,7 +81,7 @@ const Navbar = () => {
         <NavButton
           title="chat"
           color={screenColor}
-          customFunc={() => handleClick("chart")}
+          customFunc={() => handleClick("chat")}
           icon={<BsChatLeft />}
           dotColor="#03c9d7"
         />
@@ -108,7 +108,7 @@ const Navbar = () => {
           </div>
         </TooltipComponent>
         {navAction.cart && <Cart />}
-        {navAction.chart && <Chart />}
+        {navAction.chat && <Chat />}
         {navAction.userProfile && <UserProfile />}
         {navAction.notification && <Notification />}
       </div>

@@ -33,6 +33,7 @@ const App = () => {
     setThemeSettings,
     screenColor,
     screenTheme,
+    resetNavAction,
   } = useContext(StateContext);
 
   return (
@@ -73,7 +74,7 @@ const App = () => {
             <div className="fixed md:static dark:bg-main-dark-bg bg-main-bg navbar w-full">
               <Navbar />
             </div>
-            <div>
+            <div onClick={() => resetNavAction()}>
               {themeSettings && <ThemeSettings />}
               <Routes>
                 {/* Dashboard */}

@@ -14,6 +14,7 @@ const StateContext = createContext({
   setThemeSettings: () => {},
   themeMode: () => {},
   setColor: () => {},
+  resetNavAction: () => {},
 });
 
 export default StateContext;

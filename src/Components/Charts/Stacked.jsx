@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ChartComponent,
   Legend,
@@ -15,8 +15,10 @@ import {
   stackedPrimaryXAxis,
   stackedPrimaryYAxis,
 } from "../../data/dummy";
+import StateContext from "../../context/context";
 
 const Stacked = ({ width, height }) => {
+  const { screenTheme } = useContext(StateContext);
   return (
     <ChartComponent
       width={width}
@@ -27,6 +29,7 @@ const Stacked = ({ width, height }) => {
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
       legendSettings={{ background: "white" }}
+      background={screenTheme === "Dark" ? "#33373E" : "#FFFFFF"}
     >
       <Inject services={[Legend, Category, StackingColumnSeries, Tooltip]} />
       <SeriesCollectionDirective>

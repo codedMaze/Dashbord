@@ -5,7 +5,7 @@ const defaultNavState = {
   activeMenu: true,
   screenSize: {},
   navAction: {
-    chart: false,
+    chat: false,
     cart: false,
     userProfile: false,
     notification: false,
@@ -38,6 +38,18 @@ const navigateReducer = (state, action) => {
     return {
       ...state,
       activeMenu: action.size,
+    };
+  }
+
+  if (action.type === "RESET_NAV_ACTION") {
+    return {
+      ...state,
+      navAction: {
+        chat: false,
+        cart: false,
+        userProfile: false,
+        notification: false,
+      },
     };
   }
 
@@ -92,6 +104,12 @@ const ContextProvider = ({ children }) => {
     });
   };
 
+  const resetNavAction = () => {
+    dispatchNavAction({
+      type: "RESET_NAV_ACTION",
+    });
+  };
+
   const stateContext = {
     activeMenu: navState.activeMenu,
     navAction: navState.navAction,
@@ -106,6 +124,7 @@ const ContextProvider = ({ children }) => {
     setThemeSettings,
     themeMode,
     setColor,
+    resetNavAction,
   };
 
   return (

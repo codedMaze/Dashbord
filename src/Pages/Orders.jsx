@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   GridComponent,
   ColumnsDirective,
@@ -16,8 +16,10 @@ import {
 
 import { ordersData, contextMenuItems, ordersGrid } from "../data/dummy";
 import { Header } from "../Components";
+import StateContext from "../context/context";
 
 const Orders = () => {
+  const { screenTheme } = useContext(StateContext);
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl dark:bg-secondary-dark-bg">
       <Header category="Page" title="Orders" />
@@ -29,8 +31,11 @@ const Orders = () => {
         allowSorting
         allowExcelExport
         allowPdfExport
+        style={{ background: screenTheme === "Dark" ? "#33373E" : "#FFFFFF" }}
       >
-        <ColumnsDirective>
+        <ColumnsDirective
+          style={{ background: screenTheme === "Dark" ? "#33373E" : "#FFFFFF" }}
+        >
           {ordersGrid.map((item, index) => (
             <ColumnDirective key={index} {...item} />
           ))}
